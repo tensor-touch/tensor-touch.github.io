@@ -396,8 +396,7 @@
           </video>
         </div>
         <div style="max-width: 900px; margin: 0 auto 1.5rem auto; font-size: 1.15rem; color: #222; text-align: center;">
-          <b>Real2Render2Real (R2R2R)</b> is a scalable pipeline for generating data to train generalist manipulation
-          policies - without physics simulation or teleoperation.
+          <b>TensorTouch</b> is a calibration framework of optical tactile Sensors for estimating high resolution stress tensor and deformation for advanced dexterous manipulation.
         </div>
         <div style="text-align: center; margin-bottom: 2.5rem;">
           <a href="#" style="margin-right: 1.5rem; color: #3478f6; text-decoration: none; font-weight: 600;">[Paper
@@ -409,19 +408,17 @@
       </section>
       <section id="abstract">
         <h1>Abstract</h1>
-        Advanced dexterous manipulation involving multiple simultaneous contacts across different surfaces, like
-        pinching coins from ground or manipulating intertwined objects, remains challenging for robotic systems. Such
-        tasks exceed the capabilities of vision and proprioception alone, requiring high-resolution tactile sensing with
-        calibrated physical metrics. Raw optical tactile sensor images, while information-rich, lack interpretability
-        and cross-sensor transferability, limiting their utility in real-world applications. TensorTouch addresses this
-        challenge by integrating finite element analysis with deep learning to extract comprehensive contact information
-        from optical tactile sensors, including stress tensors, deformation fields, and force distributions at
-        pixel-level resolution. Our framework achieves sub-millimeter position accuracy and precise force estimation
-        while supporting large sensor deformations, crucial for manipulating soft or delicate objects. Experimental
-        validation demonstrates the effectiveness of our method in a challenging multi-object manipulation task of
-        selectively grasping one of two strings based on detected motion- <b>achieving 90% success with objects of
-          different material properties. </b> This enables new capabilities in contact-rich manipulation scenarios
-        previously inaccessible to robotic systems.</p>
+          Advanced dexterous manipulation involving multiple simultaneous contacts across different surfaces, like 
+          pinching coins from ground or manipulating intertwined objects, remains challenging for robotic systems. Such 
+          tasks exceed the capabilities of vision and proprioception alone, requiring high-resolution tactile sensing with 
+          calibrated physical metrics. Raw optical tactile sensor images, while information-rich, lack interpretability 
+          and cross-sensor transferability, limiting their real-world utility. TensorTouch addresses this challenge 
+          by integrating finite element analysis with deep learning to extract comprehensive contact information from 
+          optical tactile sensors, including stress tensors, deformation fields, and force distributions at pixel-level 
+          resolution. The TensorTouch framework achieves sub-millimeter position accuracy and precise force estimation 
+          while supporting large sensor deformations crucial for manipulating soft objects. Experimental validation 
+          <b>demonstrates 90\% success in selectively grasping one of two strings based on detected motion </b>, 
+          enabling new contact-rich manipulation capabilities previously inaccessible to robotic systems.</p>
       </section>
 
       <section id="realrollouts">
@@ -429,10 +426,10 @@
         <div style="display: flex; justify-content: center; width: 100%; margin-bottom: 1rem;">
           <video id="main-physical-video" autoplay muted loop playsinline
             style="width: 100%; max-width: 900px; border-radius: 4px; border: 1px solid #ccc;">
-            <source src="data/real_vids/faucet_real_5x_side.mp4" type="video/mp4">
+            <source src="data/real_vids/demo_video.mp4" type="video/mp4">
           </video>
         </div>
-        <div class="video-carousel" id="physical-video-thumbnails">
+        <!-- <div class="video-carousel" id="physical-video-thumbnails">
           <video data-video="data/real_vids/faucet_real_5x_side.mp4" autoplay muted loop playsinline
             src="data/real_vids/faucet_real_5x_side.mp4" style="cursor:pointer;"></video>
           <video data-video="data/real_vids/mug_real_5x_side.mp4" autoplay muted loop playsinline
@@ -445,7 +442,7 @@
             src="data/real_vids/drawer_real_5x_side.mp4" style="cursor:pointer;"></video>
           <video data-video="data/real_vids/tiger_real_5x_side.mp4" autoplay muted loop playsinline
             src="data/real_vids/tiger_real_5x_side.mp4" style="cursor:pointer;"></video>
-        </div>
+        </div> -->
       </section>
 
       <section id="method-at-a-glance">
