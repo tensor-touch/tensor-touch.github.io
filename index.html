@@ -378,6 +378,27 @@
           thumbnailVideos.forEach(v => v.style.outline = '');
         });
       }
+      const backButton = document.getElementById('back-to-images');
+      if (backButton) {
+        backButton.addEventListener('click', () => {
+          startImageCycling();
+          thumbnailVideos.forEach(v => v.style.outline = '');
+          backButton.style.display = 'none';
+        });
+        
+        // Modify the video click handler to show the button
+        thumbnailVideos.forEach((vid, idx) => {
+          vid.addEventListener('click', () => {
+            // ... existing code ...
+            backButton.style.display = 'block';
+          });
+        });
+      }
+
+
+
+
+
 
       // Physical rollouts main video selector logic
       const mainPhysicalVideo = document.getElementById('main-physical-video');
@@ -496,9 +517,10 @@
             style="cursor:pointer;"></video>
         </div>
       </div>
+      <button id="back-to-images" style="margin-top: 0.5rem; padding: 0.5rem 1rem; background: var(--accent); color: white; border: none; border-radius: 4px; cursor: pointer; display: none;">Back to Image Cycling</button>
     </section>
 
-      <section id="The Distinction Between Simulation and Rendering">
+      <!-- <section id="The Distinction Between Simulation and Rendering">
         <h3>This is often a point of confusion for our project so here's a section dedicated to clearing it up:</h3>
         <p> When we refer to <b>simulation</b>, we mean the use of a physics engine to computationally model and
           simulate dynamic interactions in the environment. In contrast, <b>rendering</b> refers to generating visual
@@ -511,7 +533,7 @@
 
           </tr>
         </table>
-      </section>
+      </section> -->
 
       <section id="fe-simulation">
         <h2>Finite Element Simulation</h2>
