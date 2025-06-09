@@ -399,6 +399,55 @@
 
 
 
+// Tensor section image cycling logic
+      const tensorCyclingImage = document.getElementById('tensor-cycling-image');
+      const tensorVideo = document.getElementById('tensor-video');
+      
+      // Tensor image cycling setup
+      const tensorImages = [
+        'data/FEsimul/stresstensor (1).png',
+        'data/FEsimul/stresstensor (2).png',
+        'data/FEsimul/stresstensor (3).png',
+        'data/FEsimul/stresstensor (4).png',
+        'data/FEsimul/stresstensor (5).png',
+        'data/FEsimul/stresstensor (6).png',
+        'data/FEsimul/stresstensor (7).png',
+        'data/FEsimul/stresstensor (8).png'
+      ];
+      let currentTensorImageIndex = 0;
+      let tensorImageCyclingInterval;
+
+      function startTensorImageCycling() {
+        if (tensorCyclingImage) {
+          // Show image, hide video
+          tensorCyclingImage.style.display = 'block';
+          if (tensorVideo) {
+            tensorVideo.style.display = 'none';
+            tensorVideo.pause();
+          }
+          
+          // Start cycling
+          tensorImageCyclingInterval = setInterval(() => {
+            currentTensorImageIndex = (currentTensorImageIndex + 1) % tensorImages.length;
+            tensorCyclingImage.src = tensorImages[currentTensorImageIndex];
+          }, 500); // 0.5 second duration
+        }
+      }
+
+      function stopTensorImageCycling() {
+        if (tensorImageCyclingInterval) {
+          clearInterval(tensorImageCyclingInterval);
+          tensorImageCyclingInterval = null;
+        }
+      }
+
+      // Start tensor image cycling by default
+      startTensorImageCycling();
+
+
+
+
+
 
       // Physical rollouts main video selector logic
       const mainPhysicalVideo = document.getElementById('main-physical-video');
@@ -537,57 +586,54 @@
 
       <section id="fe-simulation">
         <h2>Finite Element Simulation</h2>
-        <p>Part trajectories from a single demonstration can be retargeted across different robot embodiments.</p>
-        <div class="iframe-pair">
-          <iframe
-            src="https://uynitsuj.github.io/viser-client/?playbackPath=https://uynitsuj.github.io/recordings/coffee_maker_recording_20250506_191701.viser&initialCameraPosition=1.009,0.430,0.637&initialCameraLookAt=0.240,-0.160,-0.081&initialCameraUp=-0.000,-0.000,1.000"
-            width="480" height="360"></iframe>
-          <iframe
-            src="https://uynitsuj.github.io/viser-client/?playbackPath=https://uynitsuj.github.io/recordings/franka_coffee_maker_recording_20250506_210619.viser&initialCameraPosition=0.991,-0.089,0.591&initialCameraLookAt=0.000,0.000,0.000&initialCameraUp=-0.000,-0.000,1.000"
-            width="480" height="360"></iframe>
-        </div>
-        <div class="iframe-pair">
-          <video src="data/real_vids/mug_real_5x_side.mp4" autoplay muted loop playsinline
-            style="max-width: 450px;border-radius: 5px;"></video>
-          <video src="data/real_vids/franka_real_30x_front.mp4" autoplay muted loop playsinline
-            style="max-width: 450px;border-radius: 5px;"></video>
+        <p>From collected dataset, 6D pose are extracted as keypoints for FE simulation with Yeoh hyperelastic model.</p>
+        <div class="video-carousel">
+          <video autoplay muted loop playsinline src="data/FEsimul/keypoint.mp4"></video>
+          <video autoplay muted loop playsinline src="data/FEsimul/fesimul_1.mp4"></video>
+          <video autoplay muted loop playsinline src="data/FEsimul/fesimul_2.mp4"></video>
         </div>
       </section>
 
       <section id="tensor">
         <h2>Construction of Deformation and Stress Tensor</h2>
-        <p>We randomize initial object poses to generate diverse synthetic rollouts for each object-task combination.
-        </p>
-        <div class="video-carousel">
-          <video autoplay muted loop playsinline src="data/randomization/faucet_rand_range.mp4"></video>
-          <video autoplay muted loop playsinline src="data/randomization/package_rand_range.mp4"></video>
-          <video autoplay muted loop playsinline src="data/randomization/drawer_rand_range.mp4"></video>
-          <video autoplay muted loop playsinline src="data/randomization/mug_rand_range.mp4"></video>
-          <video autoplay muted loop playsinline src="data/randomization/tiger_rand_range.mp4"></video>
-          <video autoplay muted loop playsinline src="data/randomization/franka_rand_range.mp4"></video>
+        <!-- <p>We randomize initial object poses to generate diverse synthetic rollouts for each object-task combination.
+        </p> -->
+        <div id="tensor-display" style="width: 100%; max-width: 100%; height: 460px; border: 1px solid #ccc; border-radius: 8px; margin-bottom: 0.75rem; box-shadow: 0 0 8px rgba(0, 0, 0, 0.1); position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center;">
+          <img id="tensor-cycling-image" src="data/FEsimul/stresstensor (1).png" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+          <video id="tensor-video" style="width: 100%; height: 100%; object-fit: contain; display: none;" controls></video>
         </div>
-      </section>
+        </section>
 
       <section id="model">
         <h2>Tactile Model</h2>
-        <p>From a single demonstration, R2R2R generates a distribution of plausible trajectories by interpolating 6-DoF
-          part motion.</p>
-        <img src="data/traj_interp.png" alt="Trajectory Interpolation" style="border: 1px solid #ccc;">
+        <p>We showed that the Hiera with Q-upsampling decoder outperforms other baselines. the specific design of the decoder
+          and multi-scale feature fusion is critical for dense, multi-channel prediction tasks in the tactile domain.</p>
+        <img src="data/Fig_network.png" alt="Network Model" style="border: 1px solid #ccc;">
       </section>
 
       <section id="results">
         <h2>Results</h2>
-        <p>From a single demonstration, R2R2R generates a distribution of plausible trajectories by interpolating 6-DoF
-          part motion.</p>
-        <img src="data/traj_interp.png" alt="Trajectory Interpolation" style="border: 1px solid #ccc;">
+        <p>From single undeformed / deformed image of the sensor, TensorTouch estimates stress tensors, contact shear and normal force, and displacement distribution pixelwise.</p>
+        <img src="data/Fig_qualitative_results_2.png" alt="Trajectory Interpolation" style="border: 1px solid #ccc;">
       </section>
 
-      <section id="testing">
+      <section id="Evaluation">
+        <h2>Evaluation</h2>
+        <p>To demonstrate the practical utility of TensorTouch’s calibrated stress tensor estimation, we propose a task manipulates two deformable objects
+ with tactile-sensor attached fingertips, detecting differential motion between the objects, and maintaining selective contact with only the moving object. </p>
+        <div style="display: flex; justify-content: center; width: 100%; margin: 1rem 0;">
+          <video autoplay muted loop playsinline
+            style="width: 100%; max-width: 900px; border-radius: 4px; border: 1px solid #ccc;">
+            <source src="data/real_vids/evaluation.mp4" type="video/mp4">
+          </video>
+        </div>      </section>
+
+      <!-- <section id="testing">
         <h2>Placeholder</h2>
         <p>From a single demonstration, R2R2R generates a distribution of plausible trajectories by interpolating 6-DoF
           part motion.</p>
         <img src="data/traj_interp.png" alt="Trajectory Interpolation" style="border: 1px solid #ccc;">
-      </section>
+      </section> -->
       <!-- 
     <section id="bibtex">
       <h2>BibTeX (To be Updated)</h2>
