@@ -273,48 +273,7 @@
       window.addEventListener('scroll', updateActiveLink);
       updateActiveLink();
 
-      // Iframe carousel logic
-      const iframeCarousel = document.getElementById('iframe-carousel');
-      const iframeLabel = document.getElementById('iframe-carousel-label');
-      const prevBtn = document.getElementById('iframe-carousel-prev');
-      const nextBtn = document.getElementById('iframe-carousel-next');
-      const iframeData = [
-        {
-          src: 'https://uynitsuj.github.io/viser-client/?playbackPath=https://uynitsuj.github.io/recordings/tiger_pick_r2r2r_recording_20250507_112639.viser&initialCameraPosition=1.027,0.445,0.681&initialCameraLookAt=0.188,-0.113,-0.129&initialCameraUp=-0.000,-0.000,1.000',
-          label: 'Tiger Pick'
-        },
-        {
-          src: 'https://uynitsuj.github.io/viser-client/?playbackPath=https://uynitsuj.github.io/recordings/faucet_recording_20250507_110111.viser&initialCameraPosition=1.026,0.455,0.651&initialCameraLookAt=0.108,-0.143,-0.040&initialCameraUp=-0.000,-0.000,1.000',
-          label: 'Faucet Turn'
-        },
-        {
-          src: 'https://uynitsuj.github.io/viser-client/?playbackPath=https://uynitsuj.github.io/recordings/package_recording_20250507_103622.viser&initialCameraPosition=1.050,0.428,0.670&initialCameraLookAt=0.000,0.000,0.000&initialCameraUp=-0.000,-0.000,1.000',
-          label: 'Package Open'
-        },
-        {
-          src: 'https://uynitsuj.github.io/viser-client/?playbackPath=https://uynitsuj.github.io/recordings/drawer_reversed_demo.viser&initialCameraPosition=1.050,0.428,0.700&initialCameraLookAt=0.000,0.000,-0.100&initialCameraUp=-0.000,-0.000,1.000',
-          label: 'Drawer Pull'
-        },
-        {
-          src: 'https://uynitsuj.github.io/viser-client/?playbackPath=https://uynitsuj.github.io/recordings/mug_demo.viser&initialCameraPosition=1.050,0.428,0.700&initialCameraLookAt=0.000,0.000,-0.100&initialCameraUp=-0.000,-0.000,1.000',
-          label: 'Mug Place'
-        }
-      ];
-      let iframeIdx = 0;
-      function updateIframeCarousel() {
-        iframeCarousel.src = iframeData[iframeIdx].src;
-        iframeLabel.textContent = iframeData[iframeIdx].label;
-      }
-      if (prevBtn && nextBtn && iframeCarousel && iframeLabel) {
-        prevBtn.addEventListener('click', () => {
-          iframeIdx = (iframeIdx - 1 + iframeData.length) % iframeData.length;
-          updateIframeCarousel();
-        });
-        nextBtn.addEventListener('click', () => {
-          iframeIdx = (iframeIdx + 1) % iframeData.length;
-          updateIframeCarousel();
-        });
-      }
+
 
       // Image cycling and video swap logic
       const cyclingImage = document.getElementById('cycling-image');
@@ -529,7 +488,7 @@
         <div style="display: flex; justify-content: center; width: 100%; margin: 1rem 0;">
           <video autoplay muted loop playsinline
             style="width: 100%; max-width: 900px; border-radius: 4px; border: 1px solid #ccc;">
-            <source src="data/tensortouch_anony_smallres_.mp4" type="video/mp4">
+            <source src="data/tensortouch_nosound_720.mp4" type="video/mp4">
           </video>
         </div>
         <div style="max-width: 900px; margin: 0 auto 1.5rem auto; font-size: 1.15rem; color: #222; text-align: center;">
