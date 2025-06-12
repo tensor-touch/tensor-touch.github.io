@@ -512,7 +512,7 @@
           optical tactile sensors, including stress tensors, deformation fields, and force distributions at pixel-level 
           resolution. The TensorTouch framework achieves sub-millimeter position accuracy and precise force estimation 
           while supporting large sensor deformations crucial for manipulating soft objects. Experimental validation 
-          <b>demonstrates 90\% success in selectively grasping one of two strings based on detected motion </b>, 
+          <b>demonstrates 90% success in selectively grasping one of two strings based on detected motion </b>, 
           enabling new contact-rich manipulation capabilities previously inaccessible to robotic systems.</p>
       </section>
 
@@ -532,7 +532,7 @@
           <img src="data/Fig_main_pipeline2.png" alt="Main Method"
             style="max-width: 900px; width: 100%; border-radius: 4px">
         </div>
-        <p>Overview of a pipeline. We capture real-world pose, force of indenter and sensor images 
+        <p>Overview of the pipeline. We capture real-world pose, force of indenter and sensor images 
           and simulate gel deformation and sensor motion with Finite Element analysis simulations.</p>
       </section>
 
@@ -556,7 +556,7 @@
 
       <section id="fe-simulation">
           <h2>Finite Element Simulation</h2>
-          <p>From collected dataset, 6D pose are extracted as keypoints for FE simulation with Yeoh hyperelastic model.</p>
+          <p>From the collected dataset, the 6D poses are extracted as keypoints for FE simulation with the Yeoh hyperelastic model.</p>
           
           <!-- Main display area for FE simulation videos -->
           <div style="display: flex; flex-direction: column; align-items: center; width: 100%;">
@@ -573,7 +573,6 @@
           </div>
       </section>
 
-
       <section id="tensor">
         <h2>Construction of Deformation and Stress Tensor</h2>
         <!-- <p>We randomize initial object poses to generate diverse synthetic rollouts for each object-task combination.
@@ -586,14 +585,16 @@
 
       <section id="model">
         <h2>Tactile Model</h2>
-        <p>We showed that the Hiera with Q-upsampling decoder outperforms other baselines. the specific design of the decoder
-          and multi-scale feature fusion is critical for dense, multi-channel prediction tasks in the tactile domain.</p>
+        <p>We showed that the Hiera with the Q-upsampling decoder outperforms other baselines. Hiera is a lightweight 
+          hierarchical vision transformer model that provides a hierarchical representation of the input tactile image, while outperforming state-of-the-art vision transformers.
+        
+          The specific design of the decoder and multi-scale feature fusion is critical for dense, multi-channel prediction tasks in the tactile domain. We find that our Hiera encoder and decoder architecture sets a new standard in tactile learning. </p>
         <img src="data/Fig_network.png" alt="Network Model" style="border: 1px solid #ccc;">
       </section>
 
       <section id="results">
         <h2>Results</h2>
-        <p>From single undeformed / deformed image of the sensor, TensorTouch estimates stress tensors, contact shear and normal force, and displacement distribution pixelwise.</p>
+        <p>From a single undeformed / deformed image of the sensor, TensorTouch estimates <b>dense</b> stress tensors, contact shear and normal force, and displacement distribution pixelwise.</p>
         <img src="data/Fig_qualitative_results_2.png" alt="Trajectory Interpolation" style="border: 1px solid #ccc;">
       </section>
 
